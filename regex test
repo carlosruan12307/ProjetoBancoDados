@@ -1,0 +1,31 @@
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class main {
+
+	public static void main(String[] args)  {
+	String regex = "^(select)(\\s)(([a-z]),*([a-z]),*)*(\\s)(from)(\\s)(\\w+)(((,)*)(\\w+))*(\\s)(where)(\\s)(\\w+=1)";
+	String sql = "select a,b,c,d from y where x=1";
+	
+	Pattern pattern = Pattern.compile(regex);
+	Matcher matcher = pattern.matcher(sql);
+	System.out.println(pattern.matcher(sql).matches());
+	
+	if(matcher.find()) {
+		System.out.println(matcher.group(2));
+	}else {
+		 System.out.println("NO MATCH");
+	}
+	
+}
+}
+
+
+
+regex : ^(select)\s([a-z]*(,([a-z])*)*)\s(from)\s([a-z]*(,([a-z])*)*)\s(where)\s((([a-z]*)=(\w)*)(,(([a-z])*=(\w)*))*)\s
+sql : select aab,bb,cc,dd,ee from yt,ty,dd where casa=12323,topo=12131,topo=13131
+
